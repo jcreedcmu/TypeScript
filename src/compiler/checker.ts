@@ -10974,8 +10974,8 @@ namespace ts {
                     if (!pushTypeResolution(t, TypeSystemPropertyName.ImmediateBaseConstraint)) {
                         return circularConstraintType;
                     }
-                    if (constraintDepth >= 50) {
-                        // We have reached 50 recursive invocations of getImmediateBaseConstraint and there is a
+                    if (constraintDepth >= 500) {
+                        // We have reached 500 recursive invocations of getImmediateBaseConstraint and there is a
                         // very high likelihood we're dealing with an infinite generic type that perpetually generates
                         // new type identities as we descend into it. We stop the recursion here and mark this type
                         // and the outer types as having circular constraints.
@@ -15391,8 +15391,8 @@ namespace ts {
             if (!(type && mapper && couldContainTypeVariables(type))) {
                 return type;
             }
-            if (instantiationDepth === 50 || instantiationCount >= 5000000) {
-                // We have reached 50 recursive type instantiations and there is a very high likelyhood we're dealing
+            if (instantiationDepth === 500 || instantiationCount >= 5000000) {
+                // We have reached 500 recursive type instantiations and there is a very high likelyhood we're dealing
                 // with a combination of infinite generic types that perpetually generate new type identities. We stop
                 // the recursion here by yielding the error type.
                 tracing.instant(tracing.Phase.CheckTypes, "instantiateType_DepthLimit", { typeId: type.id, instantiationDepth, instantiationCount });
